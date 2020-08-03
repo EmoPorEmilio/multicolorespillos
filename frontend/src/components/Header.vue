@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <div id="banner">
-      <div id="logo">
+      <div id="logo" @click="goToHome()">
         <img src="~@/assets/logo.png" />
       </div>
       <v-icon id="social" color="#1DA1F2" @click="goToTwitter()"
@@ -20,7 +20,12 @@
           >
             <center>
               ¿Falta algún evento importante?
-              <v-btn outlined rounded color="primary" dark
+              <v-btn
+                @click="goToPilleada()"
+                outlined
+                rounded
+                color="primary"
+                dark
                 >Sugerí una pilleada</v-btn
               >
             </center>
@@ -183,11 +188,24 @@ export default class Header extends Vue {
   }
 
   cancelFilter() {
+    this.tags = [];
+    this.dateFrom = null;
+    this.dateTo = null;
     this.filterApplied = false;
   }
 
   goToTwitter() {
     window.location.href = "https://twitter.com/coloridospillos";
+  }
+
+  goToHome() {
+    this.expand = false;
+    this.$router.push("/");
+  }
+
+  goToPilleada() {
+    this.expand = false;
+    this.$router.push("/pilleada");
   }
 
   cancelMenu1() {
@@ -252,6 +270,7 @@ export default class Header extends Vue {
 }
 
 #logo {
+  cursor: pointer;
   margin-top: 18px;
 }
 
