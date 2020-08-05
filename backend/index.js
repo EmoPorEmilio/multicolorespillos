@@ -8,7 +8,7 @@ var express = require("express");
 var Constants = require("./constants");
 var db = require("./db_access")(Constants);
 var bodyParser = require("body-parser");
-var api = require("./api")(Constants, Crypto, Utils, db);
+var api = require("./api")(Constants, db);
 
 //* EXPRESS INIT *//
 var app = express();
