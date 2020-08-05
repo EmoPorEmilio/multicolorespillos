@@ -2,26 +2,23 @@
   <div class="timeline">
     <v-timeline>
       <v-timeline-item
-        v-for="(year, i) in years"
+        v-for="(event, i) in events"
         :key="i"
-        :color="year.color"
+        :color="event.color"
         small
       >
         <template v-slot:opposite>
           <span
-            :class="`headline font-weight-bold ${year.color}--text`"
-            v-text="year.year"
+            :class="`headline font-weight-bold ${event.color}--text`"
+            v-text="event.date"
           ></span>
         </template>
         <div class="py-4">
-          <h2 :class="`headline font-weight-light mb-4 ${year.color}--text`">
-            Lorem ipsum
+          <h2 :class="`headline font-weight-light mb-4 ${event.color}--text`">
+            {{ event.title }}
           </h2>
           <div>
-            Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola
-            imperdiet nec ut, sed euismod convenire principes at. Est et nobis
-            iisque percipit, an vim zril disputando voluptatibus, vix an
-            salutandi sententiae.
+            {{ event.body }}
           </div>
         </div>
       </v-timeline-item>
@@ -36,26 +33,46 @@ import { Component, Vue, Watch } from "vue-property-decorator";
   components: {},
 })
 export default class Timeline extends Vue {
-  years = [
+  events = [
     {
+      date: "12/07/1994",
       color: "cyan",
       year: "1960",
+      title: "Ejemplo",
+      body:
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaa aa a a a aaaaaa aaaaaa a a aaaa",
     },
     {
+      date: "12/07/1994",
       color: "green",
-      year: "1970",
+      year: "1960",
+      title: "Ejemplo",
+      body:
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaa aa a a a aaaaaa aaaaaa a a aaaa",
     },
     {
-      color: "pink",
-      year: "1980",
+      date: "12/07/1994",
+      color: "purple",
+      year: "1960",
+      title: "Ejemplo",
+      body:
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaa aa a a a aaaaaa aaaaaa a a aaaa",
     },
     {
-      color: "amber",
-      year: "1990",
+      date: "12/07/1994",
+      color: "red",
+      year: "1960",
+      title: "Ejemplo",
+      body:
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaa aa a a a aaaaaa aaaaaa a a aaaa",
     },
     {
+      date: "12/07/1994",
       color: "orange",
-      year: "2000",
+      year: "1960",
+      title: "Ejemplo",
+      body:
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaa aa a a a aaaaaa aaaaaa a a aaaa",
     },
   ];
 }

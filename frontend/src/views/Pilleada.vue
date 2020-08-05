@@ -1,16 +1,15 @@
 <template>
   <div id="suggestionForm">
     <v-text-field
+      filled
       v-model="title"
       :rules="titleRules"
-      label="Título"
+      label="Título de la Noticia"
       required
     ></v-text-field>
 
-    <v-textarea v-model="body">
-      <template v-slot:label>
-        <div>Cuerpo de la noticia</div>
-      </template>
+    <v-textarea filled v-model="body" label="Cuerpo de la Noticia">
+      <template v-slot:label> </template>
     </v-textarea>
 
     <div id="formButtons">

@@ -99,9 +99,7 @@
                 <v-btn text color="primary" @click="cancelMenu2()"
                   >Cancelar</v-btn
                 >
-                <v-btn text color="secondary" @click="$refs.menuTo.save(date)"
-                  >OK</v-btn
-                ></v-date-picker
+                <v-btn text color="secondary">OK</v-btn></v-date-picker
               >
             </v-menu>
           </div>
@@ -109,24 +107,25 @@
           <div
             class="optionsMenu"
             style="
-  justify-content: center;"
+  justify-content: center; padding-top:5px;"
           >
-            <v-slide-group v-model="tags" column multiple show-arrows>
-              <v-slide-item
-                v-for="n in 25"
-                :key="n"
-                v-slot:default="{ active, toggle }"
-              >
-                <v-chip
-                  style="margin: 10px; margin-top: 13px"
-                  :color="active ? 'primary' : 'grey lighten-1'"
-                  filter
-                  outlined
-                  @click="toggle"
-                  >Partido Colorado</v-chip
-                >
-              </v-slide-item>
-            </v-slide-group>
+            <v-chip-group v-model="tags" multiple show-arrows>
+              <v-chip filter outlined>Partido Colorado</v-chip>
+              <v-chip filter outlined>Partido Nacional</v-chip>
+              <v-chip filter outlined>Cabildo Abierto</v-chip>
+              <v-chip filter outlined>Partido Independiente</v-chip>
+              <v-chip filter outlined>Partido de la Gente</v-chip>
+            </v-chip-group>
+          </div>
+
+          <div
+            class="optionsMenu"
+            style="padding-top: 2px; padding-left: 20px; padding-right: 20px;"
+          >
+            <v-text-field
+              v-model="textFilter"
+              label="Filtrar por Texto"
+            ></v-text-field>
           </div>
 
           <div
@@ -181,7 +180,7 @@ export default class Header extends Vue {
   menuTo = false;
   filterApplied = false;
 
-  tags = [];
+  tags = [2];
 
   applyFilter() {
     this.filterApplied = true;
