@@ -185,6 +185,7 @@ export default class Header extends Vue {
 
   applyFilter() {
     this.filterApplied = true;
+    this.expand = false;
   }
 
   cancelFilter() {
