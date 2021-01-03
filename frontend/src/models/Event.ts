@@ -1,7 +1,16 @@
+export enum PartidoEnum {
+  "PN",
+  "PC",
+  "CA",
+  "PI",
+  "PG",
+  "MULTI"
+}
+
 export interface Event {
-  title: string;
-  img: string;
-  date: Date;
   id: string;
-  color: string;
+  title: string;
+  body: string;
+  date: string;
+  partido: PartidoEnum;
 }

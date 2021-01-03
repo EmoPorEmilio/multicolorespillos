@@ -20,5 +20,10 @@ module.exports = function (Constants) {
     });
   };
 
+  dbFunctions.findPilleadas = async function () {
+    var query = {};
+    return await db.collection(PILLEADAS_COLLECTION).find(query);
+  };
+
   return dbFunctions;
 };

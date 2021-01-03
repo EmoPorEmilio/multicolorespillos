@@ -19,7 +19,7 @@
   padding: 12px;"
           >
             <center>
-              ¿Falta algún evento importante?
+              <span>¿Falta algún evento importante?</span>
               <v-btn
                 @click="goToPilleada()"
                 outlined
@@ -287,5 +287,9 @@ export default class Header extends Vue {
 
 img {
   width: 379px;
+}
+
+span {
+  margin: 10px;
 }
 </style>

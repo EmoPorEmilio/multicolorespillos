@@ -17,7 +17,7 @@ app.use(bodyParser.json({ limit: "5mb" }));
 
 //* INITIALIZE SERVER *//
 
-/*
+
 async function initializeServer() {
   await db.initialize(environment.DB, environment.DB_URL);
 
@@ -25,9 +25,13 @@ async function initializeServer() {
 }
 
 initializeServer();
-*/
+
 
 //* ENDPOINTS *//
+
+app.get("/api/pilleadas", function (req, res) {
+  api.getPilleadas(req, res);
+});
 
 app.all("*", (_req, res) => {
   try {

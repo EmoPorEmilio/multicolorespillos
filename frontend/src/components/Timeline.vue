@@ -1,169 +1,32 @@
 <template>
   <v-timeline id="timeline" dense>
-    <v-timeline-item color="red lighten-1" small>
-      <v-chip class="chip" color="red lighten-1" label text-color="white">
+    <v-timeline-item
+      v-for="event in events"
+      :key="event.id"
+      :color="getColorByPartido(event.partido)"
+      small
+    >
+      <v-chip
+        class="chip"
+        :color="getColorByPartido(event.partido)"
+        label
+        text-color="white"
+      >
         <v-icon left>
           mdi-calendar
         </v-icon>
-        01/07/2020
+        {{ event.date }}
       </v-chip>
       <v-card>
-        <v-card-title class="red lighten-1">
+        <v-card-title :class="getColorByPartido(event.partido)">
           <h4 class="white--text font-weight-light">
-            Talvi renuncia a su cargo
+            {{ event.title }}
           </h4>
         </v-card-title>
-        <v-container>
+        <v-container style="margin-left: 0px;">
           <v-row>
             <v-col cols="12" class="text-body-2">
-              El enano ronco renunció a los meses de prometer que iba a
-              revolucionar la educación del país. "No era lo de él". Un sorete
-              bárbaro.
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
-    </v-timeline-item>
-
-    <v-timeline-item color="purple lighten-1" small>
-      <v-chip class="chip" color="purple lighten-1" label text-color="white">
-        <v-icon left>
-          mdi-calendar
-        </v-icon>
-        01/07/2020
-      </v-chip>
-      <v-card>
-        <v-card-title class="purple lighten-1">
-          <h4 class="white--text font-weight-light">
-            Talvi renuncia a su cargo
-          </h4>
-        </v-card-title>
-        <v-container>
-          <v-row>
-            <v-col cols="12" class="text-body-2">
-              El enano ronco renunció a los meses de prometer que iba a
-              revolucionar la educación del país. "No era lo de él". Un sorete
-              bárbaro.
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
-    </v-timeline-item>
-    <v-timeline-item color="orange lighten-1" small>
-      <v-chip class="chip" color="orange lighten-1" label text-color="white">
-        <v-icon left>
-          mdi-calendar
-        </v-icon>
-        01/07/2020
-      </v-chip>
-      <v-card>
-        <v-card-title class="orange lighten-1">
-          <h4 class="white--text font-weight-light">
-            Talvi renuncia a su cargo
-          </h4>
-        </v-card-title>
-        <v-container>
-          <v-row>
-            <v-col cols="12" class="text-body-2">
-              El enano ronco renunció a los meses de prometer que iba a
-              revolucionar la educación del país. "No era lo de él". Un sorete
-              bárbaro.
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
-    </v-timeline-item>
-    <v-timeline-item color="green lighten-1" small>
-      <v-chip class="chip" color="green lighten-1" label text-color="white">
-        <v-icon left>
-          mdi-calendar
-        </v-icon>
-        01/07/2020
-      </v-chip>
-      <v-card>
-        <v-card-title class="green lighten-1">
-          <h4 class="white--text font-weight-light">
-            Talvi renuncia a su cargo
-          </h4>
-        </v-card-title>
-        <v-container>
-          <v-row>
-            <v-col cols="12" class="text-body-2">
-              El enano ronco renunció a los meses de prometer que iba a
-              revolucionar la educación del país. "No era lo de él". Un sorete
-              bárbaro.
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
-    </v-timeline-item>
-    <v-timeline-item color="cyan lighten-1" small>
-      <v-chip class="chip" color="cyan lighten-1" label text-color="white">
-        <v-icon left>
-          mdi-calendar
-        </v-icon>
-        01/07/2020
-      </v-chip>
-      <v-card>
-        <v-card-title class="cyan lighten-1">
-          <h4 class="white--text font-weight-light">
-            Talvi renuncia a su cargo
-          </h4>
-        </v-card-title>
-        <v-container>
-          <v-row>
-            <v-col cols="12" class="text-body-2">
-              El enano ronco renunció a los meses de prometer que iba a
-              revolucionar la educación del país. "No era lo de él". Un sorete
-              bárbaro.
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
-    </v-timeline-item>
-    <v-timeline-item color="red lighten-1" small>
-      <v-chip class="chip" color="red lighten-1" label text-color="white">
-        <v-icon left>
-          mdi-calendar
-        </v-icon>
-        01/07/2020
-      </v-chip>
-      <v-card>
-        <v-card-title class="red lighten-1">
-          <h4 class="white--text font-weight-light">
-            Talvi renuncia a su cargo
-          </h4>
-        </v-card-title>
-        <v-container>
-          <v-row>
-            <v-col cols="12" class="text-body-2">
-              El enano ronco renunció a los meses de prometer que iba a
-              revolucionar la educación del país. "No era lo de él". Un sorete
-              bárbaro.
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
-    </v-timeline-item>
-    <v-timeline-item color="red lighten-1" small>
-      <v-chip class="chip" color="red lighten-1" label text-color="white">
-        <v-icon left>
-          mdi-calendar
-        </v-icon>
-        01/07/2020
-      </v-chip>
-      <v-card>
-        <v-card-title class="red lighten-1">
-          <h4 class="white--text font-weight-light">
-            Talvi renuncia a su cargo
-          </h4>
-        </v-card-title>
-        <v-container>
-          <v-row>
-            <v-col cols="12" class="text-body-2">
-              El enano ronco renunció a los meses de prometer que iba a
-              revolucionar la educación del país. "No era lo de él". Un sorete
-              bárbaro.
+              {{ event.body }}
             </v-col>
           </v-row>
         </v-container>
@@ -175,12 +38,15 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Event } from "../models/Event";
+import { getColorByPartido } from "../utils/utils";
 
 @Component({
   components: {}
 })
 export default class Timeline extends Vue {
   @Prop() events!: Event[];
+
+  getColorByPartido = getColorByPartido;
 }
 </script>
 

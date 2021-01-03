@@ -1,5 +1,43 @@
 <template>
-  <Timeline :events="events" />
+  <div>
+    <Timeline :events="events" />
+    <div id="loaders" v-if="loading">
+      <v-progress-circular
+        :size="60"
+        :width="7"
+        color="red"
+        indeterminate
+      ></v-progress-circular>
+
+      <v-progress-circular
+        :size="60"
+        :width="7"
+        color="orange"
+        indeterminate
+      ></v-progress-circular>
+
+      <v-progress-circular
+        :size="60"
+        :width="7"
+        color="cyan"
+        indeterminate
+      ></v-progress-circular>
+
+      <v-progress-circular
+        :size="60"
+        :width="7"
+        color="purple"
+        indeterminate
+      ></v-progress-circular>
+
+      <v-progress-circular
+        :size="60"
+        :width="7"
+        color="green"
+        indeterminate
+      ></v-progress-circular>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -10,14 +48,8 @@ import { Component, Vue } from "vue-property-decorator";
   components: { Timeline: Timeline }
 })
 export default class Inicio extends Vue {
-  events = [
-    {
-      date: new Date(),
-      color: "#00bcd4",
-      title: "Ejemplo",
-      id: "4332"
-    }
-  ];
+  events = [];
+  loading = true;
 
   mounted() {
     console.log("test");
@@ -25,4 +57,13 @@ export default class Inicio extends Vue {
 }
 </script>
 
-<style></style>
+<style>
+#loaders {
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 500px;
+}
+</style>

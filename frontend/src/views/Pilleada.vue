@@ -1,5 +1,9 @@
 <template>
   <div id="suggestionForm">
+    <v-btn color="success" @click="goToHome()" fab depressed dark>
+      <v-icon>mdi-arrow-left</v-icon>
+    </v-btn>
+    <br />
     <v-text-field
       filled
       v-model="title"
@@ -47,6 +51,10 @@ export default class Pilleada extends Vue {
   undo() {
     this.title = "";
     this.body = "";
+  }
+
+  goToHome() {
+    this.$router.push("/");
   }
 }
 </script>
