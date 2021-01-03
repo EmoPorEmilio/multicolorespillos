@@ -43,6 +43,7 @@
 <script lang="ts">
 import { Timeline } from "../components";
 import { Component, Vue } from "vue-property-decorator";
+import axios from "axios";
 
 @Component({
   components: { Timeline: Timeline }
@@ -51,9 +52,19 @@ export default class Inicio extends Vue {
   events = [];
   loading = true;
 
-  mounted() {
-    console.log("test");
+  requestPilleadas() {
+    axios
+      .get("/api/pilledas")
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+        setTimeout(() => this.requestPilleadas(), 10000);
+      });
   }
+
+  mounted() {}
 }
 </script>
 
