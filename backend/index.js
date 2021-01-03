@@ -29,15 +29,6 @@ initializeServer();
 
 //* ENDPOINTS *//
 
-/*
-app.get("/*", function (req, res) {
-  res.send("/home/ark/public/index.html");
-});
-
-app.post("/api/login", function (req, res) {
-  api.login(req, res);
-});*/
-
 app.all("*", (_req, res) => {
   try {
     res.sendFile(environment.APP_BASE_PATH + "public/index.html");

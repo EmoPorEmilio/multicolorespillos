@@ -1,3 +1,3 @@
 import Header from "./Header.vue";
-
-export { Header };
+import Timeline from "./Timeline.vue";
+export { Header, Timeline };

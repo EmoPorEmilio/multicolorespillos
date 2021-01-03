@@ -8,7 +8,12 @@
       required
     ></v-text-field>
 
-    <v-textarea filled v-model="body" label="Cuerpo de la Noticia">
+    <v-textarea
+      filled
+      v-model="body"
+      placeholder="Agregar Información"
+      label="Cuerpo de la Noticia"
+    >
       <template v-slot:label> </template>
     </v-textarea>
 
@@ -28,10 +33,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({
-  components: {},
+  components: {}
 })
 export default class Pilleada extends Vue {
   title = "";

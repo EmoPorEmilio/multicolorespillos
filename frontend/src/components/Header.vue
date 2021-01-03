@@ -179,12 +179,17 @@ export default class Header extends Vue {
   menuFrom = false;
   menuTo = false;
   filterApplied = false;
+  textFilter = "";
 
   tags = [2];
 
   applyFilter() {
     this.filterApplied = true;
     this.expand = false;
+  }
+
+  save() {
+    return true;
   }
 
   cancelFilter() {

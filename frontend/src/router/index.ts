@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Timeline from "../views/Timeline.vue";
+import Inicio from "../views/Inicio.vue";
 import Pilleada from "../views/Pilleada.vue";
 
 Vue.use(VueRouter);
@@ -8,20 +8,20 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "Timeline",
-    component: Timeline,
+    name: "Inicio",
+    component: Inicio
   },
   {
     path: "/pilleada",
     name: "Pilleada",
-    component: Pilleada,
-  },
+    component: Pilleada
+  }
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes,
+  routes
 });
 
 export default router;
