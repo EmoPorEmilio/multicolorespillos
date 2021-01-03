@@ -18,6 +18,10 @@ export default class Inicio extends Vue {
       id: "4332"
     }
   ];
+
+  mounted() {
+    console.log("test");
+  }
 }
 </script>
 

@@ -276,16 +276,16 @@ export default class Header extends Vue {
 
 #logo {
   cursor: pointer;
-  margin-top: 18px;
+  margin-top: 19px;
 }
 
 #social {
   margin-left: 5px;
-  margin-top: 30px;
+  margin-top: 20px;
   height: 30px;
 }
 
 img {
-  width: 337px;
+  width: 379px;
 }
 </style>
