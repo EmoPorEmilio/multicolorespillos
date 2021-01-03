@@ -64,7 +64,9 @@ export default class Inicio extends Vue {
       });
   }
 
-  mounted() {}
+  mounted() {
+    this.requestPilleadas();
+  }
 }
 </script>
 
