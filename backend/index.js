@@ -29,16 +29,16 @@ initializeServer();
 
 //* ENDPOINTS *//
 
-app.get("/api/pilleadas", function (req, res) {
-  api.getPilleadas(req, res);
-});
-
 app.all("*", (_req, res) => {
   try {
     res.sendFile(environment.APP_BASE_PATH + "public/index.html");
   } catch (error) {
     res.json({ success: false, message: "Something went wrong" });
   }
+});
+
+app.get("/api/pilleadas", function (req, res) {
+  api.getPilleadas(req, res);
 });
 
 app.listen(environment.EXPRESS_PORT, function () {
