@@ -33,6 +33,14 @@ app.get("/api/pilleadas", function (req, res) {
   api.getPilleadas(req, res);
 });
 
+app.get("/api/sugerencias", function (req, res) {
+  api.getSugerencias(req, res);
+});
+
+app.post("/api/sugerencia", function (req, res) {
+  api.postSugerencia(req, res);
+});
+
 app.all("*", (_req, res) => {
   try {
     res.sendFile(environment.APP_BASE_PATH + "public/index.html");

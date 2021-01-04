@@ -25,5 +25,15 @@ module.exports = function (Constants) {
     return await db.collection(PILLEADAS_COLLECTION).find(query).toArray();
   };
 
+  dbFunctions.findSugerencias = async function () {
+    var query = {};
+    return await db.collection(SUGERENCIAS_COLLECTION).find(query).toArray();
+  };
+
+  dbFunctions.addSugerencia = async function (title, body) {
+    let sugerencia = {"title": title, "body": body}; 
+    await db.collection(SUGERENCIAS_COLLECTION).insertOne(sugerencia);
+  };
+
   return dbFunctions;
 };

@@ -57,6 +57,7 @@ export default class Inicio extends Vue {
       .get("/api/pilleadas")
       .then(response => {
         this.events = response.data.pilleadas;
+        this.loading = false;
       })
       .catch(error => {
         console.log(error);

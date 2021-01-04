@@ -9,13 +9,15 @@
       v-model="title"
       :rules="titleRules"
       label="Título de la Noticia"
+      placeholder="Título conciso y descriptivo del hecho."
       required
     ></v-text-field>
 
     <v-textarea
       filled
       v-model="body"
-      placeholder="Agregar Información"
+      :rules="titleRules"
+      placeholder="Cuanto más detallado, más fácil será añadirla. Información útil: links a noticias, fecha, descripción del hecho, etc."
       label="Cuerpo de la Noticia"
     >
       <template v-slot:label> </template>
@@ -38,6 +40,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import axios from "axios";
 
 @Component({
   components: {}
@@ -47,6 +50,7 @@ export default class Pilleada extends Vue {
   body = "";
 
   titleRules = [(v: any) => !!v || "Título requerido"];
+  bodyRules = [(v: any) => !!v || "Cuerpo requerido"];
 
   undo() {
     this.title = "";
@@ -55,6 +59,20 @@ export default class Pilleada extends Vue {
 
   goToHome() {
     this.$router.push("/");
+  }
+
+  postSugerencia() {
+    axios
+      .post("/api/pilleadas", {
+        title: this.title,
+        body: this.body
+      })
+      .then(response => {
+        this.undo();
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 }
 </script>
