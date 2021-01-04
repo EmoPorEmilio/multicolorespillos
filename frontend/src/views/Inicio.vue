@@ -56,7 +56,7 @@ export default class Inicio extends Vue {
     axios
       .get("/api/pilleadas")
       .then(response => {
-        console.log(response);
+        this.events = response.data.pilleadas;
       })
       .catch(error => {
         console.log(error);
