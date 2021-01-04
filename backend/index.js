@@ -1,6 +1,6 @@
 "use strict";
 // Optional. You will see this name in eg. 'ps' or 'top' command
-process.title = "node-coloridospillos";
+process.title = "node-multicolorespillos";
 
 //* DEPENDENCIES *//
 var environment = require("./environment");
@@ -29,20 +29,21 @@ initializeServer();
 
 //* ENDPOINTS *//
 
-app.all("*", (_req, res) => {
-  try {
-    res.sendFile(environment.APP_BASE_PATH + "public/index.html");
-  } catch (error) {
-    res.json({ success: false, message: "Something went wrong" });
-  }
-});
-
 app.get("/api/pilleadas", function (req, res) {
   api.getPilleadas(req, res);
 });
 
+app.all("*", (_req, res) => {
+  try {
+    res.sendFile(environment.APP_BASE_PATH + "public/index.html");
+  } catch (error) {
+    res.json({ success: false, message: "Ha ocurrido un error" });
+  }
+});
+
+
 app.listen(environment.EXPRESS_PORT, function () {
   console.log(
-    "ColoridosPillos corriendo en el puerto " + environment.EXPRESS_PORT
+    "MulticoloresPillos corriendo en el puerto " + environment.EXPRESS_PORT
   );
 });
