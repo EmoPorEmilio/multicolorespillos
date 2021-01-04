@@ -54,7 +54,7 @@ export default class Inicio extends Vue {
 
   requestPilleadas() {
     axios
-      .get("/api/pilledas")
+      .get("/api/pilleadas")
       .then(response => {
         console.log(response);
       })
