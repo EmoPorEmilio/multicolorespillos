@@ -242,6 +242,7 @@ export default class Header extends Vue {
   border-bottom: 1px solid #e3e3e3;
   display: flex;
   justify-content: center;
+  min-height: 80px;
 }
 #options {
   display: flex;
@@ -287,6 +288,15 @@ export default class Header extends Vue {
 
 img {
   width: 379px;
+}
+
+@media only screen and (max-width: 400px) {
+  img {
+    width: 300px;
+  }
+  #logo {
+    margin-top: 25px;
+  }
 }
 
 span {
