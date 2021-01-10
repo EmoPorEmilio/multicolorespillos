@@ -15,8 +15,8 @@
             class="optionsMenu"
             id="suggest"
             style="
-  justify-content: center;
-  padding: 12px;"
+              justify-content: center;
+              padding: 12px;"
           >
             <center>
               <span>¿Falta algún evento importante?</span>
@@ -45,7 +45,7 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="dateFrom"
+                  v-model="dateFromFormatted"
                   label="Desde"
                   prepend-icon="mdi-calendar-arrow-right"
                   readonly
@@ -64,7 +64,10 @@
                 <v-btn text color="primary" @click="cancelMenu1()"
                   >Cancelar</v-btn
                 >
-                <v-btn text color="primary" @click="$refs.menuFrom.save(date)"
+                <v-btn
+                  text
+                  color="primary"
+                  @click="$refs.menuFrom.save(dateFrom)"
                   >OK</v-btn
                 ></v-date-picker
               >
@@ -80,7 +83,7 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="dateTo"
+                  v-model="dateToFormatted"
                   label="Hasta"
                   prepend-icon="mdi-calendar-arrow-right"
                   readonly
@@ -92,26 +95,33 @@
                 ref="picker"
                 v-model="dateTo"
                 :max="new Date().toISOString().substr(0, 10)"
-                min="1950-01-01"
+                :min="dateFrom"
                 @change="save"
               >
                 <v-spacer></v-spacer>
                 <v-btn text color="primary" @click="cancelMenu2()"
                   >Cancelar</v-btn
                 >
-                <v-btn text color="secondary">OK</v-btn></v-date-picker
+                <v-btn text color="primary" @click="$refs.menuTo.save(dateTo)"
+                  >OK</v-btn
+                ></v-date-picker
               >
             </v-menu>
           </div>
 
           <div
             class="optionsMenu"
-            style="
-  justify-content: center; padding-top:5px;"
+            style="justify-content: center; padding-top:5px;"
           >
-            <v-chip-group v-model="tags" multiple show-arrows>
-              <v-chip filter outlined>Partido Colorado</v-chip>
+            <v-chip-group
+              ref="tags-group"
+              :show-arrows="true"
+              active-class="primary--text"
+              multiple
+              v-model="partidos"
+            >
               <v-chip filter outlined>Partido Nacional</v-chip>
+              <v-chip filter outlined>Partido Colorado</v-chip>
               <v-chip filter outlined>Cabildo Abierto</v-chip>
               <v-chip filter outlined>Partido Independiente</v-chip>
               <v-chip filter outlined>Partido de la Gente</v-chip>
@@ -168,24 +178,79 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Emit } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Filters, PartidoEnum } from "../models/Event";
+import EventBus from "../utils/eventbus";
 
 @Component
 export default class Header extends Vue {
   @Prop() text!: string;
   expand = false;
-  dateFrom = null;
-  dateTo = null;
+  dateFrom: string | null = null;
+  dateFromFormatted: string | null = null;
+  dateTo: string | null = null;
+  dateToFormatted: string | null = null;
   menuFrom = false;
   menuTo = false;
   filterApplied = false;
   textFilter = "";
+  partidos = [];
 
-  tags = [2];
+  formatDate(date: string | null) {
+    if (!date) return null;
+
+    const [year, month, day] = date.split("-");
+    return `${day}/${month}/${year}`;
+  }
+
+  @Watch("dateFrom")
+  formatDateFrom() {
+    this.dateFromFormatted = this.formatDate(this.dateFrom);
+  }
+
+  @Watch("dateTo")
+  formatDateTo() {
+    this.dateToFormatted = this.formatDate(this.dateTo);
+  }
+
+  parseDate(date: string) {
+    if (!date) return null;
+
+    const [month, day, year] = date.split("/");
+    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  }
 
   applyFilter() {
     this.filterApplied = true;
     this.expand = false;
+    const partidos: PartidoEnum[] = [];
+    for (let i = 0; i < this.partidos.length; i++) {
+      switch (this.partidos[i]) {
+        case 0:
+          partidos.push("PN");
+          break;
+        case 1:
+          partidos.push("PC");
+          break;
+        case 2:
+          partidos.push("CA");
+          break;
+        case 3:
+          partidos.push("PI");
+          break;
+        case 4:
+          partidos.push("PG");
+          break;
+      }
+    }
+
+    const filters: Filters = {
+      dateFrom: this.dateFromFormatted,
+      dateTo: this.dateToFormatted,
+      filterText: this.textFilter,
+      partidos: partidos
+    };
+    EventBus.$emit("APPLY_FILTER", filters);
   }
 
   save() {
@@ -193,10 +258,12 @@ export default class Header extends Vue {
   }
 
   cancelFilter() {
-    this.tags = [];
+    this.partidos = [];
     this.dateFrom = null;
     this.dateTo = null;
     this.filterApplied = false;
+    this.textFilter = "";
+    EventBus.$emit("UNDO_FILTER");
   }
 
   goToTwitter() {
@@ -221,6 +288,11 @@ export default class Header extends Vue {
   cancelMenu2() {
     this.menuTo = false;
     this.dateTo = null;
+  }
+
+  updated() {
+    const element: any = this.$refs["tags-group"];
+    element.onResize();
   }
 }
 </script>
@@ -266,7 +338,11 @@ export default class Header extends Vue {
   justify-content: flex-end;
 }
 
-@media screen and (max-width: 1079px) {
+#suggest {
+  height: 60px;
+}
+
+@media screen and (max-width: 493px) {
   #suggest {
     height: 90px;
   }
@@ -290,7 +366,7 @@ img {
   width: 379px;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 440px) {
   img {
     width: 300px;
   }

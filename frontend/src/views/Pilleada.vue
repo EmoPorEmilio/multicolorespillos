@@ -1,6 +1,6 @@
 <template>
   <div id="suggestionForm">
-    <v-btn color="success" @click="goToHome()" fab depressed dark>
+    <v-btn color="secondary" @click="goToHome()" fab depressed dark>
       <v-icon>mdi-arrow-left</v-icon>
     </v-btn>
     <br />
@@ -58,8 +58,9 @@ export default class Pilleada extends Vue {
   body = "";
   alertSuccess = false;
   alertError = false;
-
+  // eslint-disable-next-line
   titleRules = [(v: any) => !!v || "Título requerido"];
+  // eslint-disable-next-line
   bodyRules = [(v: any) => !!v || "Cuerpo requerido"];
 
   undo() {
@@ -75,11 +76,11 @@ export default class Pilleada extends Vue {
     this.alertSuccess = false;
     this.alertError = false;
     axios
-      .post("/api/pilleadas", {
+      .post("/api/sugerencia", {
         title: this.title,
         body: this.body
       })
-      .then(response => {
+      .then(() => {
         this.undo();
         this.alertSuccess = true;
       })

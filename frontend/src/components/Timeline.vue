@@ -19,7 +19,7 @@
       </v-chip>
       <v-card>
         <v-card-title :class="getColorByPartido(event.partido)">
-          <h4 class="white--text font-weight-light">
+          <h4 class="mr-4 white--text font-weight-light">
             {{ event.title }}
           </h4>
         </v-card-title>
@@ -39,6 +39,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Event } from "../models/Event";
 import { getColorByPartido } from "../utils/utils";
+import EventBus from "../utils/eventbus";
 
 @Component({
   components: {}
@@ -58,5 +59,9 @@ export default class Timeline extends Vue {
 }
 .chip {
   margin-bottom: 3px;
+}
+.v-card__text,
+.v-card__title {
+  word-break: normal; /* maybe !important  */
 }
 </style>
