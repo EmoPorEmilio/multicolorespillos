@@ -68,6 +68,7 @@ export default class Inicio extends Vue {
       .get("http://multicolorespillos.uy/api/pilleadas")
       .then(response => {
         this.events = response.data.pilleadas;
+        this.eventsFiltered = [...this.events];
         this.loading = false;
       })
       .catch(error => {
@@ -80,12 +81,12 @@ export default class Inicio extends Vue {
     if (process.env.NODE_ENV == "development") {
       this.loading = false;
       this.events = mockedEvents;
+      this.eventsFiltered = [...this.events];
     } else {
       this.requestPilleadas();
     }
     EventBus.$on("APPLY_FILTER", this.filter);
     EventBus.$on("UNDO_FILTER", this.undoFilter);
-    this.eventsFiltered = [...this.events];
   }
 
   filter(filters: Filters) {
