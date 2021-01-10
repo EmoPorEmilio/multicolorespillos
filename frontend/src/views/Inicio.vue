@@ -65,7 +65,7 @@ export default class Inicio extends Vue {
 
   requestPilleadas() {
     axios
-      .get("http://multicolorespillos.uy/api/pilleadas")
+      .get("/api/pilleadas")
       .then(response => {
         this.events = response.data.pilleadas;
         this.eventsFiltered = [...this.events];
