@@ -25,7 +25,7 @@
         </v-card-title>
         <v-container style="margin-left: 0px;">
           <v-row>
-            <v-col :v-html="event.body" cols="12" class="text-body-2"> </v-col>
+            <v-col v-html="event.body" cols="12" class="text-body-2"> </v-col>
           </v-row>
         </v-container>
       </v-card>
