@@ -39,6 +39,7 @@
                 v-for="(source, index) in event.sources"
                 :key="index"
                 :href="source"
+                target="_blank"
               >
                 <v-icon>{{ "mdi-numeric-" + index + "-box" }}</v-icon>
               </v-btn>
