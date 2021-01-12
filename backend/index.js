@@ -6,6 +6,7 @@ process.title = "node-multicolorespillos";
 var environment = require("./environment");
 var express = require("express");
 var Constants = require("./constants");
+var Utils = require("./utils");
 var db = require("./db_access")(Constants);
 var bodyParser = require("body-parser");
 var api = require("./api")(Constants, db);
@@ -17,11 +18,12 @@ app.use(bodyParser.json({ limit: "5mb" }));
 
 //* INITIALIZE SERVER *//
 
-
+const cachedEvents = [];
 async function initializeServer() {
   await db.initialize(environment.DB, environment.DB_URL);
-
-  //TODO: search for information to have on cache
+  cachedEvents = await db.findPilleadas();
+  cachedEvents = cachedEvents.sort(Utils.compareEvents);
+  console.log(cachedEvents);
 }
 
 initializeServer();
@@ -30,7 +32,17 @@ initializeServer();
 //* ENDPOINTS *//
 
 app.get("/api/pilleadas", function (req, res) {
-  api.getPilleadas(req, res);
+  let response = {};
+  try {
+    response.pilleadas = cachedEvents;
+    res.status(200);
+    res.send(response);
+  }
+  catch(error) {
+    response.error = error;
+    res.status(500);
+    res.send(response);
+  }
 });
 
 app.get("/api/sugerencias", function (req, res) {

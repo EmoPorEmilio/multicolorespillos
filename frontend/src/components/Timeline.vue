@@ -18,14 +18,31 @@
         {{ event.date }}
       </v-chip>
       <v-card>
-        <v-card-title :class="getColorByPartido(event.partido)">
-          <h4 class="mr-4 white--text font-weight-light">
+        <v-card-title
+          :class="getColorByPartido(event.partido)"
+          style="padding: 14px"
+        >
+          <h4 class="white--text font-weight-light">
             {{ event.title }}
           </h4>
         </v-card-title>
-        <v-container style="margin-left: 0px;">
+        <v-container style="margin: 0px;">
           <v-row>
-            <v-col v-html="event.body" cols="12" class="text-body-2"> </v-col>
+            <v-col cols="12" class="text-body-2">
+              <p v-for="(paragraph, index) in event.body" :key="index">
+                {{ paragraph }}
+              </p>
+              Fuentes:
+              <v-btn
+                text
+                icon
+                v-for="(source, index) in event.sources"
+                :key="index"
+                :href="source"
+              >
+                <v-icon>{{ "mdi-numeric-" + index + "-box" }}</v-icon>
+              </v-btn>
+            </v-col>
           </v-row>
         </v-container>
       </v-card>

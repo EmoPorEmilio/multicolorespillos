@@ -10,7 +10,8 @@ export interface Filters {
 export interface Event {
   _id: string;
   title: string;
-  body: string;
+  body: string[];
+  sources: string[];
   date: string;
   partido: PartidoEnum;
 }

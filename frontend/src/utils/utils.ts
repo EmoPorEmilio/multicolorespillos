@@ -74,10 +74,16 @@ export const filterEvents = (events: Event[], filters: Filters) => {
     }
     for (let j = 0; j < filterWords.length; j++) {
       if (
-        events[i].body.toLowerCase().includes(filterWords[j].toLowerCase()) ||
         events[i].title.toLowerCase().includes(filterWords[j].toLowerCase())
       ) {
         hasWord = true;
+      }
+      for (let k = 0; k < events[i].body.length; k++) {
+        if (
+          events[i].body[k].toLowerCase().includes(filterWords[j].toLowerCase())
+        ) {
+          hasWord = true;
+        }
       }
     }
     if (!hasWord) {
