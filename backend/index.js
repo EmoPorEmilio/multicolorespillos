@@ -18,7 +18,7 @@ app.use(bodyParser.json({ limit: "5mb" }));
 
 //* INITIALIZE SERVER *//
 
-const cachedEvents = [];
+var cachedEvents = [];
 async function initializeServer() {
   await db.initialize(environment.DB, environment.DB_URL);
   cachedEvents = await db.findPilleadas();
