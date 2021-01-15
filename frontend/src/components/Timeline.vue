@@ -41,7 +41,9 @@
                 :href="source"
                 target="_blank"
               >
-                <v-icon>{{ "mdi-numeric-" + index + 1 + "-box" }}</v-icon>
+                <v-icon>{{
+                  "mdi-numeric-" + parseInt(index + 1) + "-box"
+                }}</v-icon>
               </v-btn>
             </v-col>
           </v-row>
